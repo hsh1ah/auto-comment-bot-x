@@ -1,0 +1,17 @@
+name: Auto Comment on New Issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Add thank you comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: 'Thank you for your contribution!'
